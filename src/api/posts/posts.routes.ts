@@ -6,6 +6,8 @@ import {
   updatePost,
 } from "./posts.controller";
 import upload from "./middlewares/multer";
+// import { validatePost } from "./middlewares/validatePost";
+// import { validateResult } from "./middlewares/validateResult";
 
 const router = express.Router();
 
