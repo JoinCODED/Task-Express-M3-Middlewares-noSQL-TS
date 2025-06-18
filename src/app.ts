@@ -1,17 +1,17 @@
 import express from "express";
 import connectDB from "./database";
 import postsRoutes from "./api/posts/posts.routes";
-
-
-const app = express();
-const PORT = 8000;
+import cors from "cors";
+import morgan from "morgan";
+import { NotFoundHandler } from "./api/posts/middlewares/NotFound";
+import { ErrorHandler } from "./api/posts/middlewares/ErrorHandler";
+export const app = express();
 
 app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
 
 app.use("/posts", postsRoutes);
 
-
-connectDB();
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+app.use(NotFoundHandler);
+app.use(ErrorHandler);
